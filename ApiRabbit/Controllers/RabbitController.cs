@@ -2,33 +2,92 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiRabbit.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiRabbit.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RabbitController : ControllerBase
     {
         // GET: api/Rabbit
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Rabbit> Get()
         {
-            return new string[] { "value1", "value2" };
+            Rabbit rabb1 = new Rabbit()
+            {
+                Name = "Gigi",
+                Age = 15,
+                EyeColor = Rabbit.EyeColors.Blue,
+                FurColor = Rabbit.FurColors.Brown,
+                Genders = Rabbit.Gender.Male
+            };
+            Rabbit rabb2 = new Rabbit()
+            {
+                Name = "Feona",
+                Age = 12,
+                EyeColor = Rabbit.EyeColors.Black,
+                FurColor = Rabbit.FurColors.White,
+                Genders = Rabbit.Gender.Male
+            };
+            Rabbit rabb3 = new Rabbit()
+            {
+                Name = "Vasile",
+                Age = 24,
+                EyeColor = Rabbit.EyeColors.Red,
+                FurColor = Rabbit.FurColors.Grey,
+                Genders = Rabbit.Gender.Male
+            };
+            List<Rabbit> rabbits = new List<Rabbit>();
+            rabbits.Add(rabb1);
+            rabbits.Add(rabb2);
+            rabbits.Add(rabb3);
+            return rabbits;
         }
 
         // GET: api/Rabbit/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Rabbit Get(int id)
         {
-            return "value";
+            Rabbit rabb1 = new Rabbit()
+            {
+                Name = "Gigi",
+                Age = 15,
+                EyeColor = Rabbit.EyeColors.Blue,
+                FurColor = Rabbit.FurColors.Brown,
+                Genders = Rabbit.Gender.Male
+            };
+            Rabbit rabb2 = new Rabbit()
+            {
+                Name = "Feona",
+                Age = 12,
+                EyeColor = Rabbit.EyeColors.Black,
+                FurColor = Rabbit.FurColors.White,
+                Genders = Rabbit.Gender.Male
+            };
+            Rabbit rabb3 = new Rabbit()
+            {
+                Name = "Vasile",
+                Age = 24,
+                EyeColor = Rabbit.EyeColors.Red,
+                FurColor = Rabbit.FurColors.Grey,
+                Genders = Rabbit.Gender.Male
+            };
+            return rabb1;
         }
 
         // POST: api/Rabbit
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] string value)
         {
+            if (ModelState.IsValid)
+            {
+                // save in database
+                return Ok();
+            }
+            return BadRequest();
         }
 
         // PUT: api/Rabbit/5
