@@ -12,13 +12,12 @@ namespace ApiRabbit.Controllers
     [ApiController]
     public class RabbitController : ControllerBase
     {
-        // GET: api/Rabbit
-        [HttpGet]
-        public IEnumerable<Rabbit> Get()
+        private static List<Rabbit> addRabbit = new List<Rabbit>();
+        public RabbitController()
         {
             Rabbit rabb1 = new Rabbit()
             {
-                Name = "Gigi",
+                Name = "Ionut",
                 Age = 15,
                 EyeColor = Rabbit.EyeColors.Blue,
                 FurColor = Rabbit.FurColors.Brown,
@@ -40,11 +39,18 @@ namespace ApiRabbit.Controllers
                 FurColor = Rabbit.FurColors.Grey,
                 Genders = Rabbit.Gender.Male
             };
-            List<Rabbit> rabbits = new List<Rabbit>();
-            rabbits.Add(rabb1);
-            rabbits.Add(rabb2);
-            rabbits.Add(rabb3);
-            return rabbits;
+            if (!addRabbit.Any())
+            {
+                addRabbit.Add(rabb1);
+                addRabbit.Add(rabb2);
+                addRabbit.Add(rabb3);
+            }
+        }
+        // GET: api/Rabbit
+        [HttpGet]
+        public IEnumerable<Rabbit> Get()
+        {
+            return addRabbit;
         }
 
         // GET: api/Rabbit/5
