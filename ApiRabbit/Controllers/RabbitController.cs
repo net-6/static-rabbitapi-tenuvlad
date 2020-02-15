@@ -18,7 +18,7 @@ namespace ApiRabbit.Controllers
         {
             Rabbit rabb1 = new Rabbit()
             {
-                Name = "Gigi",
+                Name = "Ionut",
                 Age = 15,
                 EyeColor = Rabbit.EyeColors.Blue,
                 FurColor = Rabbit.FurColors.Brown,
